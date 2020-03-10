@@ -20,7 +20,7 @@ A very simple `express` middleware to check user data against a given schema.
 * `options` \<object> options to be passed to the `ajv` constructor. 
 * Returns new `validate` middleware generator.
 
-By default, `validate` calls `new Ajv()` without any additional options. In case you need a more tweaked `ajv` instance, this function will let you adjust [any available options](https://ajv.js.org/#options).
+By default, `validate` uses `ajv` instance that was created without any additional options. In case you need a more tweaked version, `withOptions` function will let you adjust [any available options](https://ajv.js.org/#options).
 
 
 Example usage:
