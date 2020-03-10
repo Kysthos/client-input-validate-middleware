@@ -48,16 +48,18 @@ const addSchemaValidation = allErrors(addSchema, 'body.add', (errors, req, res, 
     dataPath,
     message
   }) => `${dataPath ? dataPath + ' ' : ''}${message}`))
-  // If server will get, eg., such a request:
-  // {
-  //   "add": {
-  //     "user": "",
-  //     "email": "gwegwgwe"
-  //   }
-  // }
-  // It will respond with status 400 and such response:
-  // [ ".user should NOT be shorter than 1 characters",
-  //   "should have required property 'password'",
-  //   ".email should match format \"email\""]
+})
+
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
+
+app.post('/login', loginSchemaValidation, (req, res) => {
+  res.sendStatus(200)
+})
+
+app.post('/add', addSchemaValidation, (req, res) => {
+  res.sendStatus(200)
 })
 ```
