@@ -33,7 +33,7 @@ const addSchema = require('./schemata/add')
 
 // get the default middleware generator
 // it will use new Ajv() called with no additional options
-const schemaValidation = require('./checkAgainstSchema')
+const schemaValidation = require('./client-input-validate-middleware')
 
 // create another instance of the middleware generator
 // with custom options that will be passed to new instance of Ajv
