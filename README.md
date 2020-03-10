@@ -30,9 +30,11 @@ const app = express();
 // require your schemas
 const loginSchema = require('./schemata/login')
 const addSchema = require('./schemata/add')
+
 // get the default middleware generator
 // it will use new Ajv() called with no additional options
 const schemaValidation = require('./checkAgainstSchema')
+
 // create another instance of the middleware generator
 // with custom options that will be passed to new instance of Ajv
 const allErrors = schemaValidation.withOptions({
@@ -42,6 +44,7 @@ const allErrors = schemaValidation.withOptions({
 // by default, in case of validation failure,
 // res.sendStatus(400) is called
 const loginSchemaValidation = schemaValidation(loginSchema, 'body')
+
 // you can specify a custom function to be called on validation failure
 const addSchemaValidation = allErrors(addSchema, 'body.add', (errors, req, res, next) => {
   res.status(400).json(errors.map(({
